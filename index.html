@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VAT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://img.lovepik.com/free-png/20210926/lovepik-calculator-icon-free-vector-illustration-material-png-image_401495032_wh1200.png" type="icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-image: url(background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .card{
+            box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        }
+    </style>
+</head>
+
+<body >
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6" style="height: 500px; width: 500px;">
+                <div class="card" >
+                    <div class="card-header bg-primary text-white text-center">
+                        <h3>Weighted Vat Calculator</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="input-group">
+                            <div class="form-group">
+                                <label for="fiyat">Price:</label>
+                                <input type="number" class="form-control" id="price" min="0" required onkeyup="key_submit(event)">
+                            </div>
+                            <div class="form-group">
+                                <label for="fiyat">Quantity:</label>
+                                <input type="number" class="form-control" id="quantity" min="0" required onkeyup="key_submit(event)">
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <!-- <label for="kdv_orani">VAT: </label><span id="vat">0.0</span> -->
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-success btn-block p-1"><h3>VAT: </label><span id="vat">0.0</h3></button>
+                            </div>
+                            <div class="text-center text-success mt-3" id="vat_text">vat copied</div>
+                        </form>
+                        <div id="sonuc" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function key_submit(event){
+        console.log(event.keyCode)
+        var p= document.getElementById('price').value;
+    var q= document.getElementById('quantity').value;
+    if(p&&q){
+    document.getElementById('vat_text').classList.remove("d-none") 
+    document.getElementById('vat').innerHTML=parseFloat((parseInt(p)*parseInt(q)*0.15).toFixed(2));
+    navigator.clipboard.writeText(document.getElementById('vat').innerHTML)
+    setInterval(function(){
+        document.getElementById('vat_text').classList.add("d-none") 
+    },3000)
+} 
+    }
+function Calculate(e){
+    var p= document.getElementById('price').value;
+    var q= document.getElementById('quantity').value;
+    if(p&&q){
+    document.getElementById('vat_text').classList.remove("d-none") 
+    document.getElementById('vat').innerHTML=Math.round(parseInt(p)*parseInt(q)*0.15,2)*1;
+    navigator.clipboard.writeText(document.getElementById('vat').innerHTML)
+    setInterval(function(){
+        document.getElementById('vat_text').classList.add("d-none") 
+    },3000)
+    }else{
+        alert("please check values")
+    }
+}
+</script>
+</body>
+
+</html>
